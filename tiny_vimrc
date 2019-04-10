@@ -1,0 +1,15 @@
+set nocompatible " nocompatible.  Use Vim defaults (better!)
+filetype off
+
+syntax on        " Turns syntax highlighting on.
+set nu           " number. Show line numbers
+set ru           " ruler. Show cursor positions at all time
+
+set ai           " autoindent. Turn on autoindenting (e.g. after a while statement)
+set ts=4         " tabstop. Width (in spaces) that a <tab> is displayed
+set sw=4         " shiftwidth. Width (in spaces) used in each step of the autoindent (as well as << and >> )
+set expandtab    " expandtab. Uses spaces instead of tabs.
+
+set is           " incsearch. Incremental searching. Highlights matches as you type
+set nojs         " no join spaces. When joining two lines, it does not inclue a space
+set sm           " show match. Briefly jump to matching bracket when inserting one
