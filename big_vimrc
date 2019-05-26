@@ -1,11 +1,20 @@
 set nocompatible " Use Vim defaults (better!)
 
+runtime! ftplugin/man.vim         " Allows for reading of man pages
 " Vundle Packages ----------- {{{
 set rtp+=~/.vim/bundle/Vundle.vim " Modifies the run time path to include Vundle
+"set rtp+=~/.fzf                   " Includes fuzzy find
 
 " Load Vundle Packages
 call vundle#begin()
-    Plugin 'wakatime/vim-wakatime'
+"    Plugin 'wakatime/vim-wakatime'
+    Plugin 'gmarik/Vundle.vim'
+    Plugin 'scrooloose/nerdtree'                 " File exploration
+    Plugin 'guns/vim-clojure-static'             " Clojure formatting
+    Plugin 'junegunn/rainbow_parentheses.vim'    " Multicolored clojure parentheses
+    Plugin 'andymass/vim-matchup'                " Matching between terms e.g. if else
+    Plugin 'junegunn/fzf'                        " Enables fuzzy finding
+    Plugin 'junegunn/fzf.vim'                    " Adds fuzzy finding bindings for vim
 call vundle#end()
 " }}}
 
@@ -28,6 +37,13 @@ set expandtab             " Uses spaces instead of tabs.
 set incsearch             " incsearch. Incremental searching. Highlights matches as you type
 set nojoinspaces          " no join spaces. When joining two lines, it does not inclue a space
 set showmatch             " show match. Briefly jump to matching bracket when inserting one
+set ignorecase
+
+" Set completion menu background to gray
+highlight Pmenu ctermbg=gray guibg=gray
+
+" Matchup Background colors
+hi MatchParen ctermbg=blue ctermfg=black guibg=red
 
 "" Status line -------- {{{
 set laststatus=2
@@ -47,7 +63,11 @@ set statusline+=%L  " Total lines
 set tags=tags;/~
 set hidden " Allows for switching buffers without saving
 
-runtime! ftplugin/man.vim " Allows for reading of man pages
+"" Buffers ----- {{{
+set wildchar=<Tab> wildmenu wildmode=full
+set wildcharm=<C-Z>
+nnoremap <F10> :b <C-Z>
+" }}}
 
 " }}}
 
@@ -55,11 +75,14 @@ runtime! ftplugin/man.vim " Allows for reading of man pages
 
 let mapleader = ","
 let maplocalleader = "\\"
+set pastetoggle=<F2>
 
 "" Mode Mapping ------- {{{
 inoremap jk <esc>
 vnoremap jk <esc>
 inoremap <esc> <nop>
+" Fix paste bug triggered by the above inoremaps
+set t_BE=
 """ Strong Movement
 noremap H 0
 noremap L $
@@ -88,6 +111,12 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-j> <c-w>j
 """ Enter Adds newline
 nnoremap <cr> o<esc>
+""" Toggle Highlighting
+nnoremap <leader>, :set hlsearch!<cr>
+""" Fuzzy Files
+nmap ; :Buffers<cr>
+nmap <leader>t :Files<CR>
+nmap <leader>r :Tags<CR>
 
 " }}}
 
@@ -137,7 +166,7 @@ augroup END
 "" Writing file Settings -------------- {{{
 augroup writing
     autocmd!
-    autocmd FileType markdown,mkd,md,txt set spell spelllang=en_us
+    "autocmd FileType markdown,mkd,md,txt set spell spelllang=en_us
 augroup END
 "" }}}
 
@@ -172,6 +201,8 @@ augroup filetype_javascript
     autocmd FileType javascript nnoremap <buffer> <localleader>c I// <esc>
     autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
     autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+    autocmd FileType javascript setlocal tabstop=2
+    autocmd FileType javascript setlocal shiftwidth=2
 augroup END
 "" }}}
 
@@ -182,6 +213,13 @@ augroup filetype_ruby
     autocmd FileType ruby setlocal foldlevelstart=1
     autocmd FileType ruby setlocal tabstop=2
     autocmd FileType ruby setlocal shiftwidth=2
+augroup END
+"" }}}
+
+"" Lisp file settings -------- {{{
+augroup filetype_lisp
+    autocmd!
+    autocmd FileType lisp,clojure,schem RainbowParentheses
 augroup END
 "" }}}
 
