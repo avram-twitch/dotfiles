@@ -69,6 +69,7 @@ set wildcharm=<C-Z>
 nnoremap <F10> :b <C-Z>
 " }}}
 
+
 " }}}
 
 " General Mappings ---------- {{{
@@ -112,11 +113,23 @@ nnoremap <c-j> <c-w>j
 """ Enter Adds newline
 nnoremap <cr> o<esc>
 """ Toggle Highlighting
-nnoremap <leader>, :set hlsearch!<cr>
+nnoremap <leader>h :set hlsearch!<cr>
 """ Fuzzy Files
 nmap ; :Buffers<cr>
 nmap <leader>t :Files<CR>
 nmap <leader>r :Tags<CR>
+
+"" Terminal ----- {{{
+" Opens two stacked terminals to right
+nnoremap <leader>c :bel vert term<cr><c-w>:bel term<cr><c-w>h
+" Collapses/Resizes terminals
+nnoremap <leader>x :exe "vertical resize" . (&columns)<cr>
+nnoremap <leader>z :exe "vertical resize" . (&columns * 3/4)<cr>
+" Opens Rails Console
+nnoremap <leader>rt :bel call term_start("rails c", {"term_rows": (&lines * 1/4)})<cr>
+
+
+"" }}}
 
 " }}}
 
