@@ -1,38 +1,49 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# TODO check OS for these kinds of things
 export ZSH="/Users/atwitchell/.oh-my-zsh"
+export ZSH="/home/avram/.oh-my-zsh/"
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
+
+# History settings
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 USER=``
 ZSH_THEME="agnoster"
 plugins=(git osx)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh_files/paths  # Appends to paths local setup
+
+# Aliases
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi
+
+if [ -f ~/.zsh_files/paths ]; then
+    source ~/.zsh_files/paths  # Appends to paths local setup
+fi
 
 eval "$(rbenv init -)" # Set up rbenv shell integration
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-bindkey -v
+
 zstyle :compinstall filename '/Users/atwitchell/.zshrc'
+zstyle :compinstall filename '/home/avram/.zshrc'
+bindkey -v
 bindkey '^R' history-incremental-search-backward
 
 autoload -Uz compinit
 compinit
 # Aliases
-
-## Basics
-alias c="clear"
-alias ls="ls -G"
-alias l="ls -lh"
-alias lt="ls -lht"
-
-# zshrc
-alias ez="vim ~/.zshrc"
-alias sz="source ~/.zshrc"
-
-# Git
-alias gs="git status"
 
 alias ctags="`brew --prefix`/bin/ctags"
 rtags() {
