@@ -6,18 +6,8 @@ case $- in
       *) return;;
 esac
 
-# TODO check OS for these kinds of things
-
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    export ZSH="/home/avram/.oh-my-zsh/"
-    zstyle :compinstall filename '/home/avram/.zshrc'
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    export ZSH="/Users/atwitchell/.oh-my-zsh"
-    zstyle :compinstall filename '/Users/atwitchell/.zshrc'
-else
-    echo "Unknown OS"
-fi
-
+# Set Variables
+export ZSH="$HOME/.oh-my-zsh/"
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
@@ -26,20 +16,24 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# Setup ZSH Options
 USER=``
 ZSH_THEME="agnoster"
-plugins=(git osx)
+case `uname` in
+    Darwin)
+        # OS X
+        plugins=(git osx)
+    ;;
+    Linux)
+        plugins=(git)
+    ;;
+esac
 
-source $ZSH/oh-my-zsh.sh
-
-# Aliases
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
-fi
-
-if [ -f ~/.zsh_files/paths ]; then
-    source ~/.zsh_files/paths  # Appends to paths local setup
-fi
+# Source Files
+[ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
+[ -f ~/.zsh_files/paths ] && source ~/.zsh_files/paths
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(rbenv init -)" # Set up rbenv shell integration
 export NVM_DIR="$HOME/.nvm"
@@ -48,14 +42,12 @@ export NVM_DIR="$HOME/.nvm"
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
-# Aliases
 
 alias ctags="`brew --prefix`/bin/ctags"
 rtags() {
     ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)
 }
 
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
