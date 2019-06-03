@@ -7,8 +7,17 @@ case $- in
 esac
 
 # TODO check OS for these kinds of things
-export ZSH="/Users/atwitchell/.oh-my-zsh"
-export ZSH="/home/avram/.oh-my-zsh/"
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    export ZSH="/home/avram/.oh-my-zsh/"
+    zstyle :compinstall filename '/home/avram/.zshrc'
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    export ZSH="/Users/atwitchell/.oh-my-zsh"
+    zstyle :compinstall filename '/Users/atwitchell/.zshrc'
+else
+    echo "Unknown OS"
+fi
+
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
@@ -36,8 +45,6 @@ eval "$(rbenv init -)" # Set up rbenv shell integration
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
-zstyle :compinstall filename '/Users/atwitchell/.zshrc'
-zstyle :compinstall filename '/home/avram/.zshrc'
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
