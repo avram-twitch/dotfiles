@@ -4,17 +4,16 @@
 alias c='clear'
 
 ## ls aliases
-alias ls='ls --color=auto'
 alias l="ls -lh"
-alias ll='ls -alF'
-alias la='ls -A'
+alias la='l -A'
 alias lg='l | grep'
-alias lt="ls -lht"
+alias lt="l -t"
 
 ## grep aliases
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias reg='egrep -r'
 
 # GIT Aliases
 
@@ -33,6 +32,7 @@ alias sb='source ~/.bashrc'
 alias ez="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
 alias ev='vim ~/.vimrc'
+alias ea='vim ~/.aliases'
 
 # Daily Journal
 

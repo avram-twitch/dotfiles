@@ -126,7 +126,8 @@ nnoremap <leader>c :bel vert term<cr><c-w>:bel term<cr><c-w>h
 nnoremap <leader>x :exe "vertical resize" . (&columns)<cr>
 nnoremap <leader>z :exe "vertical resize" . (&columns * 3/4)<cr>
 " Opens Rails Console
-nnoremap <leader>rt :bel call term_start("rails c", {"term_rows": (&lines * 1/4)})<cr>
+nnoremap <leader>rc :bel call term_start("rails c", {"term_rows": (&lines * 1/4)})<cr>
+nnoremap <leader>rt :bel call term_start("rails t", {"term_rows": (&lines * 1/4)})<cr>
 
 
 "" }}}

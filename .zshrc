@@ -23,9 +23,11 @@ case `uname` in
     Darwin)
         # OS X
         plugins=(git osx)
+        alias ls='ls -G'
     ;;
     Linux)
         plugins=(git)
+        alias ls='ls --color=auto'
     ;;
 esac
 
