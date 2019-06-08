@@ -120,14 +120,15 @@ nmap <leader>t :Files<CR>
 nmap <leader>r :Tags<CR>
 
 "" Terminal ----- {{{
-" Opens two stacked terminals to right
-nnoremap <leader>c :bel vert term<cr><c-w>:bel term<cr><c-w>h
-" Collapses/Resizes terminals
-nnoremap <leader>x :exe "vertical resize" . (&columns)<cr>
-nnoremap <leader>z :exe "vertical resize" . (&columns * 3/4)<cr>
-" Opens Rails Console
+""" Open console
+nnoremap <leader>c :bel call term_start("/bin/zsh", {"term_rows": (&lines * 1/4)})<cr>
+""" Collapses/Resizes terminals
+nnoremap <leader>x :exe "resize" . (&lines)<cr>
+nnoremap <leader>z :exe "resize" . (&lines * 3/4)<cr>
+""" Opens Rails Console
 nnoremap <leader>rc :bel call term_start("rails c", {"term_rows": (&lines * 1/4)})<cr>
 nnoremap <leader>rt :bel call term_start("rails t", {"term_rows": (&lines * 1/4)})<cr>
+nnoremap <leader>rr :bel call term_start("rails s", {"term_rows": (&lines * 1/4)})<cr>
 
 
 "" }}}
