@@ -116,7 +116,7 @@ nnoremap <cr> o<esc>
 nnoremap <leader>h :set hlsearch!<cr>
 """ Fuzzy Files
 nmap ; :Buffers<cr>
-nmap <leader>t :Files<CR>
+nmap <leader>f :Files<CR>
 nmap <leader>r :Tags<CR>
 
 "" Terminal ----- {{{
