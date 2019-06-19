@@ -115,7 +115,10 @@ nmap ; :Buffers<cr>
 nmap <leader>f :Files<CR>
 nmap <leader>r :Tags<CR>
 """ ALE
-nnoremap <leader>, :ALEToggle<CR>
+nnoremap <leader>aa :ALEToggle<CR>
+nnoremap <leader>ad :ALEDetail<CR>
+""" NERDTree
+nnoremap <leader>n :NERDTreeToggle<CR>
 
 "" Terminal ----- {{{
 """ Open console
