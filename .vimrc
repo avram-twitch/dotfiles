@@ -55,11 +55,6 @@ set statusline+=/   " Separator
 set statusline+=%L  " Total lines
 "" }}}
 
-" Fold methods
-" set fdm=indent   
-" set foldnestmax=10
-" set nofoldenable
-" set foldlevel=2
 
 set tags=tags;/~
 set hidden " Allows for switching buffers without saving
@@ -192,8 +187,6 @@ augroup END
 augroup filetype_python
     autocmd!
     autocmd FileType python nnoremap <buffer> <localleader>x :exec '!python3' shellescape(@%, 1)<cr>
-    autocmd FileType python setlocal foldmethod=indent
-    autocmd FileType python setlocal foldlevelstart=1
     autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
     autocmd FileType python onoremap b /return<cr>
     autocmd FileType python :iabbrev <buffer> iff if:<left> 
@@ -227,8 +220,6 @@ augroup END
 "" Ruby file settings -------- {{{
 augroup filetype_ruby
     autocmd!
-    " autocmd FileType ruby setlocal foldmethod=indent
-    " autocmd FileType ruby setlocal foldlevelstart=99
     autocmd FileType ruby setlocal tabstop=2
     autocmd FileType ruby setlocal shiftwidth=2
 augroup END
