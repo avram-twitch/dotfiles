@@ -15,6 +15,7 @@ call vundle#begin()
     Plugin 'andymass/vim-matchup'                " Matching between terms e.g. if else
     Plugin 'junegunn/fzf'                        " Enables fuzzy finding
     Plugin 'junegunn/fzf.vim'                    " Adds fuzzy finding bindings for vim
+    Plugin 'w0rp/ale'                            " Adds async syntax linting
 call vundle#end()
 " }}}
 
@@ -118,6 +119,8 @@ nnoremap <leader>h :set hlsearch!<cr>
 nmap ; :Buffers<cr>
 nmap <leader>f :Files<CR>
 nmap <leader>r :Tags<CR>
+""" ALE
+nnoremap <leader>, :ALEToggle<CR>
 
 "" Terminal ----- {{{
 """ Open console
@@ -224,8 +227,8 @@ augroup END
 "" Ruby file settings -------- {{{
 augroup filetype_ruby
     autocmd!
-    autocmd FileType ruby setlocal foldmethod=indent
-    autocmd FileType ruby setlocal foldlevelstart=1
+    " autocmd FileType ruby setlocal foldmethod=indent
+    " autocmd FileType ruby setlocal foldlevelstart=99
     autocmd FileType ruby setlocal tabstop=2
     autocmd FileType ruby setlocal shiftwidth=2
 augroup END
