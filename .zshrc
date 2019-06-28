@@ -52,4 +52,3 @@ alias ctags="`brew --prefix`/bin/ctags"
 rtags() {
     ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)
 }
-
