@@ -16,6 +16,7 @@ call vundle#begin()
     Plugin 'junegunn/fzf'                        " Enables fuzzy finding
     Plugin 'junegunn/fzf.vim'                    " Adds fuzzy finding bindings for vim
     Plugin 'w0rp/ale'                            " Adds async syntax linting
+    Plugin 'tpope/vim-fugitive'                  " Git Plugin
 call vundle#end()
 " }}}
 
@@ -48,7 +49,7 @@ hi MatchParen ctermbg=blue ctermfg=black guibg=red
 " Matchup Settings
 let g:matchup_matchparen_deferred = 1
 let g:matchup_matchparen_deferred_show_delay = 700
-let g:matchup_matchparen_deferred_hide_delay = 100 
+let g:matchup_matchparen_deferred_hide_delay = 50
 
 "" Status line -------- {{{
 set laststatus=2
