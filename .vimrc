@@ -135,6 +135,8 @@ nnoremap <leader>z :exe "resize" . (&lines * 3/4)<cr>
 nnoremap <leader>rc :bel call term_start("rails c", {"term_rows": (&lines * 1/4)})<cr>
 nnoremap <leader>rt :bel call term_start("rails t", {"term_rows": (&lines * 1/4)})<cr>
 nnoremap <leader>rr :bel call term_start("rails s", {"term_rows": (&lines * 1/4)})<cr>
+""" Python Console
+nnoremap <leader>pc :bel call term_start("python3", {"term_rows": (&lines * 1/4)})<cr>
 
 
 "" }}}
