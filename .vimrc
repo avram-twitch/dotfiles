@@ -122,6 +122,8 @@ nmap <leader>r :Tags<CR>
 """ ALE
 nnoremap <leader>aa :ALEToggle<CR>
 nnoremap <leader>ad :ALEDetail<CR>
+nnoremap <leader>af :ALEFix<CR>
+nnoremap <leader>as :ALEFixSuggest<CR>
 """ NERDTree
 nnoremap <leader>n :NERDTreeToggle<CR>
 
@@ -200,7 +202,8 @@ augroup filetype_python
     autocmd FileType python :iabbrev <buffer> iff if:<left> 
     autocmd FileType python :iabbrev <buffer> forr for:<left>
     autocmd FileType python :iabbrev <buffer> rr return
-    autocmd Filetype python :onoremap ifn :<c-u>execute "normal! ?def .*\r:nohlsearch\rwve"<cr>
+    autocmd FileType python :onoremap ifn :<c-u>execute "normal! ?def .*\r:nohlsearch\rwve"<cr>
+    autocmd FileType python set backspace=2 " Allows backspacing on new line
 augroup END
 "" }}}
 
