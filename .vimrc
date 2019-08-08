@@ -1,8 +1,8 @@
 set nocompatible " Use Vim defaults (better!)
 
 runtime! ftplugin/man.vim         " Allows for reading of man pages
-" Vundle Packages ----------- {{{
-set rtp+=~/.vim/bundle/Vundle.vim " Modifies the run time path to include Vundle
+" Vundle Packages -----------
+set rtp+=~/.vim/bundle/Vundle.vim  " Modifies the run time path to include Vundle
 "set rtp+=~/.fzf                   " Includes fuzzy find
 
 " Load Vundle Packages
@@ -10,18 +10,17 @@ call vundle#begin()
 "    Plugin 'wakatime/vim-wakatime'
     Plugin 'gmarik/Vundle.vim'
     Plugin 'scrooloose/nerdtree'                 " File exploration
-    Plugin 'guns/vim-clojure-static'             " Clojure formatting
-    Plugin 'junegunn/rainbow_parentheses.vim'    " Multicolored clojure parentheses
     Plugin 'andymass/vim-matchup'                " Matching between terms e.g. if else
     Plugin 'junegunn/fzf'                        " Enables fuzzy finding
     Plugin 'junegunn/fzf.vim'                    " Adds fuzzy finding bindings for vim
     Plugin 'dense-analysis/ale'                  " Adds async syntax linting
     Plugin 'tpope/vim-fugitive'                  " Git Plugin
     Plugin 'iCyMind/NeoSolarized'                " Solarized theme
+    Plugin 'vim-airline/vim-airline'             " Status/tabline
+    Plugin 'Yggdroot/indentLine'                 " Shows indent lines
 call vundle#end()
-" }}}
 
-" Basic Settings ------------ {{{
+" Basic Settings ------------
 
 filetype plugin indent on " Enables file type detection, 
                           " plugins for specific files to be loaded,
@@ -53,35 +52,16 @@ let g:matchup_matchparen_deferred = 1
 let g:matchup_matchparen_deferred_show_delay = 200
 let g:matchup_matchparen_deferred_hide_delay = 50
 
-"" Status line -------- {{{
-set laststatus=2
-set statusline=%f   " Path to file
-set statusline+=%=  " Switch to right side
-set statusline+=%l  " Current line
-set statusline+=/   " Separator
-set statusline+=%L  " Total lines
-"" }}}
-
-
 set tags=tags;/~
 set hidden " Allows for switching buffers without saving
 
-"" Buffers ----- {{{
-set wildchar=<Tab> wildmenu wildmode=full
-set wildcharm=<C-Z>
-nnoremap <F10> :b <C-Z>
-" }}}
-
-
-" }}}
-
-" General Mappings ---------- {{{
+" General Mappings ----------
 
 let mapleader = ","
 let maplocalleader = "\\"
-set pastetoggle=<F2>
+set pastetoggle=<leader>p
 
-"" Mode Mapping ------- {{{
+"" Mode Mapping -------
 inoremap jk <esc>
 vnoremap jk <esc>
 inoremap <esc> <nop>
@@ -108,6 +88,7 @@ nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 """ Surround selection with < >
 vnoremap <leader>< <esc>`<i<<esc>`>a><esc>
+vnoremap <leader>> <esc>`<i<<esc>`>a><esc>
 """ Switch between screen splits
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
@@ -134,7 +115,7 @@ let g:ale_sign_style_warning = '💩'
 """ NERDTree
 nnoremap <leader>n :NERDTreeToggle<CR>
 
-"" Terminal ----- {{{
+"" Terminal -----
 """ Open console
 nnoremap <leader>c :bel call term_start("/bin/zsh", {"term_rows": (&lines * 1/4)})<cr>
 """ Collapses/Resizes terminals
@@ -147,12 +128,7 @@ nnoremap <leader>rr :bel call term_start("rails s", {"term_rows": (&lines * 1/4)
 """ Python Console
 nnoremap <leader>pc :bel call term_start("python3", {"term_rows": (&lines * 1/4)})<cr>
 
-
-"" }}}
-
-" }}}
-
-"" Operator Mapping ---- {{{
+"" Operator Mapping ----
 
 " Get next/last paranthesis
 onoremap in( :<c-u>normal! f(vi(<cr>
@@ -170,105 +146,75 @@ onoremap p i(
 
 "" }}}
 
-"" Abbreviations ----- {{{
+"" Abbreviations -----
 iabbrev teh the
 iabbrev widht width
 iabbrev tehn then
 iabbrev boyd body
 iabbrev hmtl html
-" }}}
 
-" }}}
+" Autocmds ------------
 
-" Autocmds ------------ {{{
-
-"" Vimscript file settings -------------------------- {{{
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType vim setlocal foldlevelstart=1
-augroup END
-"" }}}
-
-"" Writing file Settings -------------- {{{
+"" Writing file Settings --------------
 augroup writing
     autocmd!
     "autocmd FileType markdown,mkd,md,txt set spell spelllang=en_us
 augroup END
 "" }}}
 
-"" Python file settings --------- {{{
+"" Python file settings ---------
 augroup filetype_python
     autocmd!
     autocmd FileType python nnoremap <buffer> <localleader>x :exec '!python3' shellescape(@%, 1)<cr>
     autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
     autocmd FileType python onoremap b /return<cr>
-    autocmd FileType python :iabbrev <buffer> iff if:<left> 
-    autocmd FileType python :iabbrev <buffer> forr for:<left>
-    autocmd FileType python :iabbrev <buffer> rr return
     autocmd FileType python :onoremap ifn :<c-u>execute "normal! ?def .*\r:nohlsearch\rwve"<cr>
     autocmd FileType python set backspace=2 " Allows backspacing on new line
 augroup END
 "" }}}
 
-"" C file settings -------------- {{{
+"" C file settings --------------
 augroup filetype_c
     autocmd!
     autocmd BufNewFile,BufRead *.c :iabbrev <buffer> ffor for (int i = 0; i <; i++)<left><left><left><left><left><left><left>
-    autocmd BufNewFile,BufRead *.c nnoremap <buffer> <localleader>f ofor (int i = 0; i < ; i++)<cr>{<cr>}<esc>kk9wi
-    autocmd BufNewFile,BufRead *.c nnoremap <buffer> <localleader>w owhile ()<cr>{<cr>}<esc>kkela
 augroup END
 
-"" }}}
-
-"" Javascript file settings --------- {{{
+"" Javascript file settings ---------
 augroup filetype_javascript
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <localleader>c I// <esc>
-    autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
-    autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
     autocmd FileType javascript setlocal tabstop=2
     autocmd FileType javascript setlocal shiftwidth=2
 augroup END
 "" }}}
 
-"" Ruby file settings -------- {{{
+"" Ruby file settings --------
 augroup filetype_ruby
     autocmd!
     autocmd FileType ruby setlocal tabstop=2
     autocmd FileType ruby setlocal shiftwidth=2
+    autocmd FileType ruby set backspace=2 " Allows backspacing on new line
 augroup END
 "" }}}
 
-"" Lisp file settings -------- {{{
-augroup filetype_lisp
-    autocmd!
-    autocmd FileType lisp,clojure,schem RainbowParentheses
-augroup END
-"" }}}
-
-"" HTML file settings ----------- {{{
+"" HTML file settings -----------
+autocmd BufNewFile,BufRead *.html.erb set filetype=html
 augroup filetype_html
     autocmd!
-    autocmd BufNewFile,BufRead *.html.erb set filetype=html
     autocmd FileType html setlocal ts=2
     autocmd FileType html setlocal sw=2
     autocmd FileType html setlocal ai
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup END
-"" }}}
 
 autocmd BufRead,BufNewFile *.scss setlocal filetype=css
 
-"" CSS file settings ------------- {{{
+"" CSS file settings -------------
 augroup filetype_css
     autocmd!
     autocmd FileType css nnoremap <buffer> <localleader>c 0i/*<esc>A*/<esc>
     autocmd FileType css nnoremap <buffer> <localleader>xc ?\/\*<cr>xx/\*\/<cr>xx
 augroup END
-"" }}}
-
-" }}}
 
 " Protect changes between writes. Default values of
 " updatecount (200 keystrokes) and updatetime
