@@ -18,7 +18,11 @@ HISTFILESIZE=2000
 
 # Setup ZSH Options
 USER=``
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
+if [[ ! -a $ZSH_CUSTOM/themes/powerlevel10k ]]; then
+    git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+fi
+ZSH_THEME=powerlevel10k/powerlevel10k
 case `uname` in
     Darwin)
         # OS X
@@ -56,3 +60,6 @@ rtags() {
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
