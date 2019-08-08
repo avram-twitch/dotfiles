@@ -52,3 +52,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 rtags() {
     ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)
 }
+
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+fi
