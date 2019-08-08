@@ -15,8 +15,9 @@ call vundle#begin()
     Plugin 'andymass/vim-matchup'                " Matching between terms e.g. if else
     Plugin 'junegunn/fzf'                        " Enables fuzzy finding
     Plugin 'junegunn/fzf.vim'                    " Adds fuzzy finding bindings for vim
-    Plugin 'w0rp/ale'                            " Adds async syntax linting
+    Plugin 'dense-analysis/ale'                  " Adds async syntax linting
     Plugin 'tpope/vim-fugitive'                  " Git Plugin
+    Plugin 'iCyMind/NeoSolarized'                " Solarized theme
 call vundle#end()
 " }}}
 
@@ -40,6 +41,7 @@ set incsearch             " incsearch. Incremental searching. Highlights matches
 set nojoinspaces          " no join spaces. When joining two lines, it does not inclue a space
 set showmatch             " show match. Briefly jump to matching bracket when inserting one
 set ignorecase
+set termguicolors
 
 " Set completion menu background to gray
 highlight Pmenu ctermbg=gray guibg=gray
@@ -48,7 +50,7 @@ highlight Pmenu ctermbg=gray guibg=gray
 hi MatchParen ctermbg=blue ctermfg=black guibg=red
 " Matchup Settings
 let g:matchup_matchparen_deferred = 1
-let g:matchup_matchparen_deferred_show_delay = 700
+let g:matchup_matchparen_deferred_show_delay = 200
 let g:matchup_matchparen_deferred_hide_delay = 50
 
 "" Status line -------- {{{
@@ -124,6 +126,11 @@ nnoremap <leader>aa :ALEToggle<CR>
 nnoremap <leader>ad :ALEDetail<CR>
 nnoremap <leader>af :ALEFix<CR>
 nnoremap <leader>as :ALEFixSuggest<CR>
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+" let g:ale_sign_info
+let g:ale_sign_style_error = '⁉️'
+let g:ale_sign_style_warning = '💩'
 """ NERDTree
 nnoremap <leader>n :NERDTreeToggle<CR>
 
@@ -162,16 +169,11 @@ onoremap p i(
 "" }}}
 
 "" Abbreviations ----- {{{
-
 iabbrev teh the
 iabbrev widht width
 iabbrev tehn then
 iabbrev boyd body
 iabbrev hmtl html
-
-iabbrev @@ avram.twitch@gmail.com
-iabbrev atcom avramtwitchell.com
-iabbrev ssig <cr>Avram Twitchell<cr>avram.twitch@gmail.com
 " }}}
 
 " }}}
@@ -265,3 +267,26 @@ augroup END
 "" }}}
 
 " }}}
+
+" Protect changes between writes. Default values of
+" updatecount (200 keystrokes) and updatetime
+" (4 seconds) are fine
+set swapfile
+set directory^=~/.vim/swap//
+
+" protect against crash-during-write
+set writebackup
+" but do not persist backup after successful write
+set nobackup
+" use rename-and-write-new method whenever safe
+set backupcopy=auto
+" patch required to honor double slash at end
+if has("patch-8.1.0251")
+    " consolidate the writebackups -- not a big
+    " deal either way, since they usually get deleted
+    set backupdir^=~/.vim/backup//
+end
+
+" persist the undo tree for each file
+set undofile
+set undodir^=~/.vim/undo//
