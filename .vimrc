@@ -15,9 +15,11 @@ call vundle#begin()
     Plugin 'junegunn/fzf.vim'                    " Adds fuzzy finding bindings for vim
     Plugin 'dense-analysis/ale'                  " Adds async syntax linting
     Plugin 'tpope/vim-fugitive'                  " Git Plugin
-    Plugin 'iCyMind/NeoSolarized'                " Solarized theme
     Plugin 'vim-airline/vim-airline'             " Status/tabline
     Plugin 'Yggdroot/indentLine'                 " Shows indent lines
+    Plugin 'junegunn/goyo.vim'                   " Distraction-free writing
+    Plugin 'iCyMind/NeoSolarized'                " Solarized theme
+    Plugin 'joshdick/onedark.vim'                " onedark theme
 call vundle#end()
 
 " Basic Settings ------------
@@ -41,6 +43,11 @@ set nojoinspaces          " no join spaces. When joining two lines, it does not 
 set showmatch             " show match. Briefly jump to matching bracket when inserting one
 set ignorecase
 set termguicolors
+colorscheme onedark 
+set background=dark
+
+command! Writemode colorscheme NeoSolarized | setlocal spell | Goyo 70 | set background=light
+command! Codemode colorscheme onedark | Goyo! | setlocal nospell | set background=dark
 
 " Set completion menu background to gray
 highlight Pmenu ctermbg=gray guibg=gray
@@ -158,7 +165,7 @@ iabbrev hmtl html
 "" Writing file Settings --------------
 augroup writing
     autocmd!
-    "autocmd FileType markdown,mkd,md,txt set spell spelllang=en_us
+    " autocmd FileType markdown,mkd,md,txt :Writemode
 augroup END
 "" }}}
 
