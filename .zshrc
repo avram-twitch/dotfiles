@@ -43,7 +43,7 @@ esac
 
 eval "$(rbenv init -)" # Set up rbenv shell integration
 export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+# . "$(brew --prefix nvm)/nvm.sh"
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
@@ -52,10 +52,10 @@ zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 
-alias ctags="`brew --prefix`/bin/ctags"
-rtags() {
-    ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)
-}
+# alias ctags="`brew --prefix`/bin/ctags"
+# rtags() {
+#     ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)
+# }
 
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'

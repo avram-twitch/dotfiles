@@ -15,11 +15,13 @@ call vundle#begin()
     Plugin 'junegunn/fzf.vim'                    " Adds fuzzy finding bindings for vim
     Plugin 'dense-analysis/ale'                  " Adds async syntax linting
     Plugin 'tpope/vim-fugitive'                  " Git Plugin
-    Plugin 'vim-airline/vim-airline'             " Status/tabline
     Plugin 'Yggdroot/indentLine'                 " Shows indent lines
     Plugin 'junegunn/goyo.vim'                   " Distraction-free writing
     Plugin 'iCyMind/NeoSolarized'                " Solarized theme
     Plugin 'joshdick/onedark.vim'                " onedark theme
+    Plugin 'vim-airline/vim-airline'             " Status/tabline
+    Plugin 'wlangstroth/vim-racket'              " Racket plugin
+    Plugin 'luochen1990/rainbow'                 " Rainbow Parantheses
 call vundle#end()
 
 " Basic Settings ------------
@@ -221,6 +223,12 @@ augroup filetype_css
     autocmd!
     autocmd FileType css nnoremap <buffer> <localleader>c 0i/*<esc>A*/<esc>
     autocmd FileType css nnoremap <buffer> <localleader>xc ?\/\*<cr>xx/\*\/<cr>xx
+augroup END
+
+augroup filetype_racket
+    autocmd!
+    autocmd BufNewFile,BufRead *.rkt set filetype=scheme
+    let g:rainbow_active = 1
 augroup END
 
 " Protect changes between writes. Default values of
