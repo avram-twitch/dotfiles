@@ -20,7 +20,8 @@ call vundle#begin()
     Plugin 'iCyMind/NeoSolarized'                " Solarized theme
     Plugin 'joshdick/onedark.vim'                " onedark theme
     Plugin 'vim-airline/vim-airline'             " Status/tabline
-    Plugin 'wlangstroth/vim-racket'              " Racket plugin
+    Plugin 'neoclide/coc.nvim'                   " Autocompletion
+    " Plugin 'wlangstroth/vim-racket'            " Racket plugin
     Plugin 'luochen1990/rainbow'                 " Rainbow Parantheses
 call vundle#end()
 
@@ -47,6 +48,7 @@ set ignorecase
 set termguicolors
 colorscheme onedark 
 set background=dark
+set clipboard+=unnamedplus
 
 command! Writemode colorscheme NeoSolarized | setlocal spell | Goyo 70 | set background=light
 command! Codemode colorscheme onedark | Goyo! | setlocal nospell | set background=dark
@@ -107,6 +109,8 @@ nnoremap <c-j> <c-w>j
 nnoremap <cr> o<esc>
 """ Toggle Highlighting
 nnoremap <leader>h :set hlsearch!<cr>
+""" Terminal mappings
+tnoremap <Esc> <C-\><C-n>
 """ Fuzzy Files
 nmap ; :Buffers<cr>
 nmap <leader>f :Files<CR>
