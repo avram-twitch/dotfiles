@@ -8,6 +8,8 @@ esac
 
 # Set Variables
 export ZSH="$HOME/.oh-my-zsh/"
+export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+export P10K_PATH="$ZSH_CUSTOM/themes/powerlevel10k"
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
@@ -19,8 +21,8 @@ HISTFILESIZE=2000
 # Setup ZSH Options
 USER=``
 # ZSH_THEME="agnoster"
-if [[ ! -a $ZSH_CUSTOM/themes/powerlevel10k ]]; then
-    git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+if [[ ! -a $P10K_PATH ]]; then
+    git clone https://github.com/romkatv/powerlevel10k.git $P10K_PATH
 fi
 ZSH_THEME=powerlevel10k/powerlevel10k
 case `uname` in

@@ -40,6 +40,7 @@ set autoindent            " Turn on autoindenting (e.g. after a while statement)
 set tabstop=4             " Width (in spaces) that a <tab> is displayed
 set shiftwidth=4          " Width (in spaces) used in each step of the autoindent (as well as << and >> )
 set expandtab             " Uses spaces instead of tabs.
+set relativenumber        " Makes numbers relative
 
 set incsearch             " incsearch. Incremental searching. Highlights matches as you type
 set nojoinspaces          " no join spaces. When joining two lines, it does not inclue a space
