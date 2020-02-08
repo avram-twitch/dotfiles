@@ -23,6 +23,7 @@ call vundle#begin()
     Plugin 'neoclide/coc.nvim'                   " Autocompletion
     " Plugin 'wlangstroth/vim-racket'            " Racket plugin
     Plugin 'luochen1990/rainbow'                 " Rainbow Parantheses
+    Plugin 'tpope/vim-rails'                     " Rails Plugin
 call vundle#end()
 
 " Basic Settings ------------
@@ -93,7 +94,8 @@ noremap _ ddkP
 nnoremap <c-u> viwUe
 inoremap <c-u> <esc>viwUea
 """ Easy edit/source vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 """ Surround word in quotes
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel

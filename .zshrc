@@ -12,6 +12,7 @@ export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 export P10K_PATH="$ZSH_CUSTOM/themes/powerlevel10k"
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
+export TERM="xterm-256color"
 
 # History settings
 HISTCONTROL=ignoreboth
@@ -41,6 +42,7 @@ esac
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 [ -f ~/.zsh_files/paths ] && source ~/.zsh_files/paths
 [ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.work_rc ] && source ~/.work_rc
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(rbenv init -)" # Set up rbenv shell integration
@@ -65,3 +67,8 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# export set PATH=$PATH:~/bin/
+export PATH=$PATH:$HOME/bin/
+
+source ~/.bashrc
