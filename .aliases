@@ -17,13 +17,17 @@ alias reg='egrep -r'
 
 # GIT Aliases
 
+alias cb='git rev-parse --abbrev-ref HEAD'
+alias gpf='git push origin `cb` --force-with-lease'
 alias ga='git add -A'
 alias gc='git commit'
 alias gac='git add -A && git commit -m'
 alias gb='git branch'
 alias gcb='git checkout -b'
 alias gl='git log --oneline'
-alias gs='git status -s'
+alias gss='git status -s'
+alias gs='git status'
+alias gitc='git checkout -- .'
 
 # Reload/edit aliases
 
@@ -42,3 +46,7 @@ alias dj='echo `date +%Y-%m-%d`.md | xargs touch'
 
 alias ct='ctags -R .'
 alias ctl='ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags $(python3 -c "import os, sys; print('"' '"'.join('"'"'{}'"'"'.format(d) for d in sys.path if os.path.isdir(d)))")'
+
+## Ruby/Rails tags
+
+alias rtags='ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)'

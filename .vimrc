@@ -1,5 +1,4 @@
-set nocompatible " Use Vim defaults (better!)
-
+set nocompatible " Use Vim defaults (better!) 
 runtime! ftplugin/man.vim         " Allows for reading of man pages
 " Vundle Packages -----------
 set rtp+=~/.vim/bundle/Vundle.vim  " Modifies the run time path to include Vundle
@@ -7,23 +6,26 @@ set rtp+=~/.vim/bundle/Vundle.vim  " Modifies the run time path to include Vundl
 
 " Load Vundle Packages
 call vundle#begin()
-"    Plugin 'wakatime/vim-wakatime'
     Plugin 'gmarik/Vundle.vim'
-    Plugin 'scrooloose/nerdtree'                 " File exploration
-    Plugin 'andymass/vim-matchup'                " Matching between terms e.g. if else
-    Plugin 'junegunn/fzf'                        " Enables fuzzy finding
-    Plugin 'junegunn/fzf.vim'                    " Adds fuzzy finding bindings for vim
-    Plugin 'dense-analysis/ale'                  " Adds async syntax linting
-    Plugin 'tpope/vim-fugitive'                  " Git Plugin
-    Plugin 'Yggdroot/indentLine'                 " Shows indent lines
-    Plugin 'junegunn/goyo.vim'                   " Distraction-free writing
-    Plugin 'iCyMind/NeoSolarized'                " Solarized theme
-    Plugin 'joshdick/onedark.vim'                " onedark theme
-    Plugin 'vim-airline/vim-airline'             " Status/tabline
-    Plugin 'neoclide/coc.nvim'                   " Autocompletion
-    " Plugin 'wlangstroth/vim-racket'            " Racket plugin
-    Plugin 'luochen1990/rainbow'                 " Rainbow Parantheses
-    Plugin 'tpope/vim-rails'                     " Rails Plugin
+    Plugin 'scrooloose/nerdtree'                       " File exploration
+    Plugin 'andymass/vim-matchup'                      " Matching between terms e.g. if else
+    Plugin 'junegunn/fzf'                              " Enables fuzzy finding
+    Plugin 'junegunn/fzf.vim'                          " Adds fuzzy finding bindings for vim
+    Plugin 'dense-analysis/ale'                        " Adds async syntax linting
+    Plugin 'tpope/vim-fugitive'                        " Git Plugin
+    Plugin 'Yggdroot/indentLine'                       " Shows indent lines
+    " Plugin 'junegunn/goyo.vim'                         " Distraction-free writing
+    Plugin 'iCyMind/NeoSolarized'                      " Solarized theme
+    Plugin 'joshdick/onedark.vim'                      " onedark theme
+    Plugin 'vim-airline/vim-airline'                   " Status/tabline
+    Plugin 'neoclide/coc.nvim', {'branch': 'release'}  " Autocompletion
+    " Plugin 'neoclide/coc-solargraph'
+    Plugin 'luochen1990/rainbow'                       " Rainbow Parantheses
+    Plugin 'tpope/vim-rails'                           " Rails Plugin
+    Plugin 'tpope/vim-commentary'                      " Quick commenting
+    Plugin 'tpope/vim-surround'                        " Surrounds with quotes, tags, brackets, etc
+    Plugin 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+    Plugin 'ryanoasis/vim-devicons'                    " Icons for file manager
 call vundle#end()
 
 " Basic Settings ------------
@@ -44,16 +46,13 @@ set expandtab             " Uses spaces instead of tabs.
 set relativenumber        " Makes numbers relative
 
 set incsearch             " incsearch. Incremental searching. Highlights matches as you type
-set nojoinspaces          " no join spaces. When joining two lines, it does not inclue a space
+set nojoinspaces          " no join spaces. When joining two lines, it does not include a space
 set showmatch             " show match. Briefly jump to matching bracket when inserting one
 set ignorecase
 set termguicolors
 colorscheme onedark 
 set background=dark
 set clipboard+=unnamedplus
-
-command! Writemode colorscheme NeoSolarized | setlocal spell | Goyo 70 | set background=light
-command! Codemode colorscheme onedark | Goyo! | setlocal nospell | set background=dark
 
 " Set completion menu background to gray
 highlight Pmenu ctermbg=gray guibg=gray
@@ -81,28 +80,12 @@ inoremap <esc> <nop>
 " Fix paste bug triggered by the above inoremaps
 set t_BE=
 """ Strong Movement
-noremap H 0
-noremap L $
 noremap K <c-u>
 noremap J <c-d>
-""" Grabs a word
-noremap <space> viw
-""" Shifts line up/down
-noremap - ddp
-noremap _ ddkP
-""" Converts word to uppercase
-nnoremap <c-u> viwUe
-inoremap <c-u> <esc>viwUea
 """ Easy edit/source vimrc
 " nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-""" Surround word in quotes
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-""" Surround selection with < >
-vnoremap <leader>< <esc>`<i<<esc>`>a><esc>
-vnoremap <leader>> <esc>`<i<<esc>`>a><esc>
 """ Switch between screen splits
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
@@ -112,37 +95,27 @@ nnoremap <c-j> <c-w>j
 nnoremap <cr> o<esc>
 """ Toggle Highlighting
 nnoremap <leader>h :set hlsearch!<cr>
+""" Toggle Relative number
+nnoremap <leader>rn :set rnu!<cr>
 """ Terminal mappings
 tnoremap <Esc> <C-\><C-n>
 """ Fuzzy Files
 nmap ; :Buffers<cr>
 nmap <leader>f :Files<CR>
-nmap <leader>r :Tags<CR>
-""" ALE
-nnoremap <leader>aa :ALEToggle<CR>
-nnoremap <leader>ad :ALEDetail<CR>
-nnoremap <leader>af :ALEFix<CR>
-nnoremap <leader>as :ALEFixSuggest<CR>
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-" let g:ale_sign_info
-let g:ale_sign_style_error = '⁉️'
-let g:ale_sign_style_warning = '💩'
+nmap <leader>t :Tags<CR>
+" """ ALE
+" nnoremap <leader>aa :ALEToggle<CR>
+" nnoremap <leader>ad :ALEDetail<CR>
+" nnoremap <leader>af :ALEFix<CR>
+" nnoremap <leader>as :ALEFixSuggest<CR>
+" let g:ale_sign_error = '❌'
+" let g:ale_sign_warning = '⚠️'
+" " let g:ale_sign_info
+" let g:ale_sign_style_error = '⁉️'
+" let g:ale_sign_style_warning = '💩'
 """ NERDTree
-nnoremap <leader>n :NERDTreeToggle<CR>
-
-"" Terminal -----
-""" Open console
-nnoremap <leader>c :bel call term_start("/bin/zsh", {"term_rows": (&lines * 1/4)})<cr>
-""" Collapses/Resizes terminals
-nnoremap <leader>x :exe "resize" . (&lines)<cr>
-nnoremap <leader>z :exe "resize" . (&lines * 3/4)<cr>
-""" Opens Rails Console
-nnoremap <leader>rc :bel call term_start("rails c", {"term_rows": (&lines * 1/4)})<cr>
-nnoremap <leader>rt :bel call term_start("rails t", {"term_rows": (&lines * 1/4)})<cr>
-nnoremap <leader>rr :bel call term_start("rails s", {"term_rows": (&lines * 1/4)})<cr>
-""" Python Console
-nnoremap <leader>pc :bel call term_start("python3", {"term_rows": (&lines * 1/4)})<cr>
+" nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>n :CHADopen<CR>
 
 "" Operator Mapping ----
 
@@ -170,13 +143,6 @@ iabbrev boyd body
 iabbrev hmtl html
 
 " Autocmds ------------
-
-"" Writing file Settings --------------
-augroup writing
-    autocmd!
-    " autocmd FileType markdown,mkd,md,txt :Writemode
-augroup END
-"" }}}
 
 "" Python file settings ---------
 augroup filetype_python
