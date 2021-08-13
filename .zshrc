@@ -30,7 +30,7 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 case `uname` in
     Darwin)
         # OS X
-        plugins=(git osx)
+        plugins=(git osx zsh-autosuggestions)
     ;;
     Linux)
         plugins=(git)
