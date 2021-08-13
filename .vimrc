@@ -11,7 +11,7 @@ call vundle#begin()
     Plugin 'andymass/vim-matchup'                      " Matching between terms e.g. if else
     Plugin 'junegunn/fzf'                              " Enables fuzzy finding
     Plugin 'junegunn/fzf.vim'                          " Adds fuzzy finding bindings for vim
-    Plugin 'dense-analysis/ale'                        " Adds async syntax linting
+    " Plugin 'dense-analysis/ale'                        " Adds async syntax linting
     Plugin 'tpope/vim-fugitive'                        " Git Plugin
     Plugin 'Yggdroot/indentLine'                       " Shows indent lines
     " Plugin 'junegunn/goyo.vim'                         " Distraction-free writing
@@ -24,8 +24,8 @@ call vundle#begin()
     Plugin 'tpope/vim-rails'                           " Rails Plugin
     Plugin 'tpope/vim-commentary'                      " Quick commenting
     Plugin 'tpope/vim-surround'                        " Surrounds with quotes, tags, brackets, etc
-    Plugin 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
     Plugin 'ryanoasis/vim-devicons'                    " Icons for file manager
+    Plugin 'vimwiki/vimwiki'                           " Vimwiki
 call vundle#end()
 
 " Basic Settings ------------
@@ -97,8 +97,6 @@ nnoremap <cr> o<esc>
 nnoremap <leader>h :set hlsearch!<cr>
 """ Toggle Relative number
 nnoremap <leader>rn :set rnu!<cr>
-""" Terminal mappings
-tnoremap <Esc> <C-\><C-n>
 """ Fuzzy Files
 nmap ; :Buffers<cr>
 nmap <leader>f :Files<CR>
@@ -114,8 +112,7 @@ nmap <leader>t :Tags<CR>
 " let g:ale_sign_style_error = '⁉️'
 " let g:ale_sign_style_warning = '💩'
 """ NERDTree
-" nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>n :CHADopen<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 
 "" Operator Mapping ----
 
@@ -130,17 +127,7 @@ onoremap il" :<c-u>normal! F"vi"<cr>
 onoremap an" :<c-u>normal! f"va"<cr>
 onoremap al" :<c-u>normal! F"va"<cr>
 
-" Get next parenthesis
-onoremap p i(
-
 "" }}}
-
-"" Abbreviations -----
-iabbrev teh the
-iabbrev widht width
-iabbrev tehn then
-iabbrev boyd body
-iabbrev hmtl html
 
 " Autocmds ------------
 
@@ -203,6 +190,13 @@ augroup filetype_racket
     autocmd BufNewFile,BufRead *.rkt set filetype=scheme
     let g:rainbow_active = 1
 augroup END
+
+command! Diary VimwikiDiaryIndex " Alias to go to diary index
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
+augroup end
 
 " Protect changes between writes. Default values of
 " updatecount (200 keystrokes) and updatetime
