@@ -64,6 +64,9 @@ let g:matchup_matchparen_deferred = 1
 let g:matchup_matchparen_deferred_show_delay = 200
 let g:matchup_matchparen_deferred_hide_delay = 50
 
+" Vimwiki settings
+let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/export/html'}]
+
 set tags=tags;/~
 set hidden " Allows for switching buffers without saving
 
