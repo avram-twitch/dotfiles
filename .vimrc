@@ -26,6 +26,7 @@ call vundle#begin()
     Plugin 'tpope/vim-surround'                        " Surrounds with quotes, tags, brackets, etc
     Plugin 'ryanoasis/vim-devicons'                    " Icons for file manager
     Plugin 'vimwiki/vimwiki'                           " Vimwiki
+    Plugin 'michal-h21/vim-zettel'                     " Some vimwiki helpers
 call vundle#end()
 
 " Basic Settings ------------
@@ -65,7 +66,8 @@ let g:matchup_matchparen_deferred_show_delay = 200
 let g:matchup_matchparen_deferred_hide_delay = 50
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/export/html', 'auto_export': 1}]
+" let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/export/html', 'auto_export': 1}]
+let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/export/html', 'syntax': 'markdown', 'links_space_char': '_'}]
 
 set tags=tags;/~
 set hidden " Allows for switching buffers without saving
@@ -193,6 +195,11 @@ augroup filetype_racket
     autocmd BufNewFile,BufRead *.rkt set filetype=scheme
     let g:rainbow_active = 1
 augroup END
+
+augroup VimwikiGroup
+    autocmd!
+    autocmd BufWritePre *.wiki ZettelBackLinks
+augroup end
 
 command! Diary VimwikiDiaryIndex " Alias to go to diary index
 augroup vimwikigroup
