@@ -67,7 +67,7 @@ let g:matchup_matchparen_deferred_hide_delay = 50
 
 " Vimwiki settings
 " let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/export/html', 'auto_export': 1}]
-let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/export/html', 'syntax': 'markdown', 'links_space_char': '_'}]
+let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'syntax': 'markdown', 'links_space_char': '_', 'ext': '.md'}]
 
 set tags=tags;/~
 set hidden " Allows for switching buffers without saving
