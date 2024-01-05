@@ -11,16 +11,12 @@ call vundle#begin()
     Plugin 'andymass/vim-matchup'                      " Matching between terms e.g. if else
     Plugin 'junegunn/fzf'                              " Enables fuzzy finding
     Plugin 'junegunn/fzf.vim'                          " Adds fuzzy finding bindings for vim
-    " Plugin 'dense-analysis/ale'                        " Adds async syntax linting
     Plugin 'tpope/vim-fugitive'                        " Git Plugin
     Plugin 'Yggdroot/indentLine'                       " Shows indent lines
-    " Plugin 'junegunn/goyo.vim'                         " Distraction-free writing
     Plugin 'iCyMind/NeoSolarized'                      " Solarized theme
     Plugin 'joshdick/onedark.vim'                      " onedark theme
     Plugin 'vim-airline/vim-airline'                   " Status/tabline
     Plugin 'neoclide/coc.nvim', {'branch': 'release'}  " Autocompletion
-    " Plugin 'neoclide/coc-solargraph'
-    Plugin 'luochen1990/rainbow'                       " Rainbow Parantheses
     Plugin 'tpope/vim-rails'                           " Rails Plugin
     Plugin 'tpope/vim-commentary'                      " Quick commenting
     Plugin 'tpope/vim-surround'                        " Surrounds with quotes, tags, brackets, etc
@@ -106,6 +102,9 @@ nnoremap <leader>rn :set rnu!<cr>
 nmap ; :Buffers<cr>
 nmap <leader>f :Files<CR>
 nmap <leader>t :Tags<CR>
+
+""" Turns off fuzzy file preview windows
+let g:fzf_preview_window = []
 " """ ALE
 " nnoremap <leader>aa :ALEToggle<CR>
 " nnoremap <leader>ad :ALEDetail<CR>
