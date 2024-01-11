@@ -102,6 +102,8 @@ nnoremap <leader>rn :set rnu!<cr>
 nmap ; :Buffers<cr>
 nmap <leader>f :Files<CR>
 nmap <leader>t :Tags<CR>
+""" Nvim LSP
+nmap <leader>h :lua vim.diagnostic.open_float()<CR>
 
 """ Turns off fuzzy file preview windows
 let g:fzf_preview_window = []

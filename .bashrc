@@ -32,8 +32,10 @@ esac
 [ -f ~/.aliases ] && source ~/.aliases
 [ -f ~/.work_rc ] && source ~/.work_rc
 export PATH=$PATH:$HOME/bin/
+export PATH=$PATH:$HOME/go/bin/
 
 # Neovim 4 life
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
+
