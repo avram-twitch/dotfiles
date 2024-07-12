@@ -37,7 +37,7 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 case `uname` in
     Darwin)
         # OS X
-        plugins=(git macos zsh-syntax-highlighting zsh-autosuggestions)
+        plugins=(asdf git macos zsh-syntax-highlighting zsh-autosuggestions)
     ;;
     Linux)
         plugins=(git)
@@ -62,4 +62,14 @@ compinit
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+
 source ~/.bashrc
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/bison/bin:$PATH"
+if [ -f ~/.env_vars ]; then source ~/.env_vars; fi
+
+# ASDF
+
+. "$HOME/.asdf/asdf.sh"
+

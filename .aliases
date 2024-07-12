@@ -42,6 +42,9 @@ alias ea='vim ~/.aliases'
 
 alias dj='echo `date +%Y-%m-%d`.md | xargs touch'
 
+# Ruby
+alias bx='bundle exec'
+
 # Tags
 
 alias ct='ctags -R .'
@@ -50,3 +53,8 @@ alias ctl='ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags 
 ## Ruby/Rails tags
 
 alias rtags='ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)'
+alias ntags='ctags -R --exclude=.git --exclude=tmp .'
+
+# Github CLI
+
+alias gsh='gh codespace ssh'
