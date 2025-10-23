@@ -64,6 +64,8 @@ compinit
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 
+source ~/bin/codespace-utils
+source ~/bin/shortcuts
 source ~/.bashrc
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
@@ -73,3 +75,4 @@ if [ -f ~/.env_vars ]; then source ~/.env_vars; fi
 
 . "$HOME/.asdf/asdf.sh"
 
+[[ ! -f $SPRING_DIRECTORY/spring-cli/init.sh ]] || source $SPRING_DIRECTORY/spring-cli/init.sh

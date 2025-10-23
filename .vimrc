@@ -15,7 +15,7 @@ call vundle#begin()
     Plugin 'Yggdroot/indentLine'                       " Shows indent lines
     " Plugin 'iCyMind/NeoSolarized'                      " Solarized theme
     Plugin 'joshdick/onedark.vim'                      " onedark theme
-    Plugin 'vim-airline/vim-airline'                   " Status/tabline
+    " Plugin 'vim-airline/vim-airline'                   " Status/tabline
     Plugin 'neoclide/coc.nvim', {'branch': 'release'}  " Autocompletion
     Plugin 'tpope/vim-rails'                           " Rails Plugin
     Plugin 'tpope/vim-commentary'                      " Quick commenting
@@ -172,6 +172,16 @@ let g:fzf_preview_window = []
 """ NERDTree
 nnoremap <leader>n :NERDTreeToggle<CR>
 
+""" Copilot
+" nnoremap <leader>ai :CopilotChatToggle<CR>
+" vnoremap <leader>ae :CopilotChatExplain<CR>
+" vnoremap <leader>ar :CopilotChatReview<CR>
+" vnoremap <leader>af :CopilotChatFix<CR>
+" vnoremap <leader>ao :CopilotChatOptimize<CR>
+" vnoremap <leader>ad :CopilotChatDocs<CR>
+" vnoremap <leader>at :CopilotChatTests<CR>
+" vnoremap <leader>aafd :CopilotChatFixDiagnostic<CR>
+
 "" Operator Mapping ----
 
 " " Get next/last paranthesis
@@ -267,3 +277,49 @@ augroup end
 "" Commands
 
 command Exec set splitbelow | new | set filetype=sh | read !sh #
+
+"" conceal level
+nnoremap <leader>c0 :set conceallevel=0<CR>
+nnoremap <leader>c1 :set conceallevel=1<CR>
+
+" GitHub Permalink Function (testing)
+
+" Add this to your .vimrc
+function! GitHubPermalink()
+    " Get current file path relative to git root
+    let l:git_root = trim(system('git rev-parse --show-toplevel'))
+    let l:current_file = expand('%:p')
+    let l:relative_path = substitute(l:current_file, l:git_root . '/', '', '')
+    
+    " Get current line number
+    let l:line_number = line('.')
+    
+    " Get current git SHA
+    let l:git_sha = trim(system('git rev-parse HEAD'))
+    
+    " Get remote origin URL and convert to GitHub format
+    let l:remote_url = trim(system('git config --get remote.origin.url'))
+    
+    " Convert SSH/HTTPS URLs to GitHub web format
+    let l:github_base = l:remote_url
+    let l:github_base = substitute(l:github_base, 'git@github\.com:', 'https://github.com/', '')
+    let l:github_base = substitute(l:github_base, '\.git$', '', '')
+    
+    " Construct the permalink
+    let l:permalink = l:github_base . '/blob/' . l:git_sha . '/' . l:relative_path . '#L' . l:line_number
+    
+    " Copy to clipboard (works on most systems)
+    call system('echo "' . l:permalink . '" | pbcopy')  " macOS
+    " Alternative for Linux: call system('echo "' . l:permalink . '" | xclip -selection clipboard')
+    " Alternative for Windows: call system('echo "' . l:permalink . '" | clip')
+    
+    " Display the link
+    echo 'GitHub permalink copied to clipboard:'
+    echo l:permalink
+endfunction
+
+" Create the command
+command! GHLink call GitHubPermalink()
+
+" Optional: Create a key mapping (e.g., <leader>gh)
+nnoremap <leader>gh :call GitHubPermalink()<CR>
