@@ -17,6 +17,7 @@ call vundle#begin()
     Plugin 'joshdick/onedark.vim'                      " onedark theme
     " Plugin 'vim-airline/vim-airline'                   " Status/tabline
     Plugin 'neoclide/coc.nvim', {'branch': 'release'}  " Autocompletion
+    Plugin 'vim-ruby/vim-ruby'                         " Ruby specific plugin
     Plugin 'tpope/vim-rails'                           " Rails Plugin
     Plugin 'tpope/vim-commentary'                      " Quick commenting
     " Plugin 'tpope/vim-surround'                        " Surrounds with quotes, tags, brackets, etc

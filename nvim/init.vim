@@ -1,0 +1,1 @@
+/Users/avram.twitchell/.config/nvim/init.vim
