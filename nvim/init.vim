@@ -15,6 +15,19 @@ require'lspconfig'.ruby_lsp.setup {
     init_options = {
         formatter = 'standard',
         linters = { 'standard' },
+--         enabledFeatures = {
+--            "documentSymbols",
+--            "hover",
+--            "documentHighlights",
+--            "documentLink",
+--            "foldingRanges",
+--            "selectionRanges",
+--            "semanticHighlighting",
+--            "formatting",
+--            "codeActions",
+--        },
+--        -- Explicitly disable these heavy ones
+--        experimentalFeaturesEnabled = false,   },
     },
     on_attach = function(client, bufnr)
         local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end

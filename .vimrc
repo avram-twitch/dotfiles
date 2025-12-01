@@ -90,10 +90,6 @@ let g:matchup_matchparen_deferred = 1
 let g:matchup_matchparen_deferred_show_delay = 200
 let g:matchup_matchparen_deferred_hide_delay = 50
 
-" Vimwiki settings
-let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/export/html', 'auto_export': 1}]
-let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'syntax': 'markdown', 'links_space_char': '_', 'ext': '.md'}]
-
 " Dev icons
 let g:webdevicons_enable_nerdtree = 1
 
@@ -124,9 +120,6 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-k> <c-w>k
 nnoremap <c-j> <c-w>j
 
-""" Enter Adds newline
-nnoremap <cr> o<esc>
-
 """ Toggle Highlighting
 nnoremap <leader>h :set hlsearch!<cr>
 
@@ -137,6 +130,11 @@ nnoremap <leader>rn :set rnu!<cr>
 nnoremap ; :lua require('telescope.builtin').buffers({sort_mru=true})<cr>
 nnoremap <leader>f :Telescope find_files<CR>
 nnoremap <leader>t :Telescope help_tags<CR>
+
+" Vimwiki settings
+let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/export/html', 'auto_export': 1}]
+let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'syntax': 'markdown', 'links_space_char': '_', 'ext': '.md'}]
+nnoremap <leader> :VimwikiToggleListItem<CR>
 
 """ Notes Stuff
 function! OpenProjectNotes()

@@ -57,4 +57,5 @@ alias ntags='ctags -R --exclude=.git --exclude=tmp .'
 
 # Github CLI
 
+alias prs='gh pr list --author "@me" --web'
 alias gsh='gh codespace ssh'

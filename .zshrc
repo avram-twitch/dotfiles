@@ -74,5 +74,6 @@ if [ -f ~/.env_vars ]; then source ~/.env_vars; fi
 # ASDF
 
 . "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
 
 [[ ! -f $SPRING_DIRECTORY/spring-cli/init.sh ]] || source $SPRING_DIRECTORY/spring-cli/init.sh
